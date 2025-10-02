@@ -46,7 +46,7 @@ export default async function PostPage({ params }: Props) {
           <header className="mb-12">
             <div className="flex items-center gap-3 text-sm text-muted-foreground mb-6">
               <time 
-                dateTime={post.date}
+                dateTime={post.date ? new Date(post.date).toISOString() : ''}
                 className="font-mono tabular-nums"
               >
                 {post.date && new Date(post.date).toLocaleDateString('ko-KR', {

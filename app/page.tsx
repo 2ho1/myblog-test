@@ -38,7 +38,7 @@ export default function Home() {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <time 
-                            dateTime={post.date}
+                            dateTime={post.date ? new Date(post.date).toISOString() : ''}
                             className="text-sm text-muted-foreground font-mono tabular-nums"
                           >
                             {post.date && new Date(post.date).toLocaleDateString('ko-KR', {
