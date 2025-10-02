@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/posts';
-import { format } from 'date-fns';
-import { ko } from 'date-fns/locale';
 
 export default function Home() {
   const posts = getAllPosts();
@@ -43,7 +41,11 @@ export default function Home() {
                             dateTime={post.date}
                             className="text-sm text-muted-foreground font-mono tabular-nums"
                           >
-                            {post.date && format(new Date(post.date), 'yyyy.MM.dd', { locale: ko })}
+                            {post.date && new Date(post.date).toLocaleDateString('ko-KR', {
+                              year: 'numeric',
+                              month: '2-digit',
+                              day: '2-digit'
+                            }).replace(/\./g, '.').replace(/\s/g, '')}
                           </time>
                           <span className="text-muted-foreground">•</span>
                           <span className="text-sm text-primary font-medium">

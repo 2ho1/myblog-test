@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPostData, getAllPostPaths } from '@/lib/posts';
-import { format } from 'date-fns';
-import { ko } from 'date-fns/locale';
 
 interface Props {
   params: Promise<{
@@ -51,7 +49,11 @@ export default async function PostPage({ params }: Props) {
                 dateTime={post.date}
                 className="font-mono tabular-nums"
               >
-                {post.date && format(new Date(post.date), 'yyyy년 MM월 dd일', { locale: ko })}
+                {post.date && new Date(post.date).toLocaleDateString('ko-KR', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
               </time>
               <span>·</span>
               <Link
